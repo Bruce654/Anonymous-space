@@ -95,7 +95,5 @@ Users can click the broker buttons to sign up and start trading with the best pl
 🔹 Forex & Commodity Traders who trade Gold & Silver.
 🔹 Beginners who need structured guidance.
 🔹 Advanced Traders looking for quick broker access and market data.
-🔹 Anyone who wants an easy, dynamic way to analyze market trends.
-
-Would you like any additional modifications or explanations?
+🔹 Anyone who wants an easy, dynamic way to analyze market trend
 
