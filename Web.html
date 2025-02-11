@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Space - Trading Elite</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .container.show {
+            display: block;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 20px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ffd700, #ff6600);
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .meter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .meter {
+            background-color: #ccc;
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .meter span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #ffcc00;
+            width: 50%;
+            transition: width 1s ease-in-out;
+        }
+
+        .label {
+            font-size: 18px;
+            color: white;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- First Window -->
+    <div id="window1" class="container show">
+        <h1>Welcome to Anonymous Space</h1>
+        <h2>Start your trading journey</h2>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="startJourney()">Start Journey</button>
+    </div>
+
+    <!-- Second Window: PO3 & CRT Trading Information -->
+    <div id="window2" class="container">
+        <h1>Power of Three (PO3) & Candle Range Theory (CRT)</h1>
+        <h3>1-Hour (H1) PO3 & CRT Formation</h3>
+        <ul>
+            <li>Accumulation: 02:00 - 06:00 EAT</li>
+            <li>Manipulation: 09:00 - 11:00 EAT</li>
+            <li>Distribution: 15:00 - 16:30 EAT</li>
+        </ul>
+
+        <h3>2-Hour (H2) PO3 & CRT Formation</h3>
+        <ul>
+            <li>Accumulation: 02:00 - 06:00 EAT</li>
+            <li>Manipulation: 08:00 - 12:00 EAT</li>
+            <li>Distribution: 14:00 - 18:00 EAT</li>
+        </ul>
+
+        <button onclick="showWindow(1)">Go Back</button>
+        <button onclick="showWindow(3)">Continue</button>
+    </div>
+
+    <!-- Third Window: Gold & Silver Strength & Trading Links -->
+    <div id="window3" class="container">
+        <h1>Gold & Silver Strength</h1>
+
+        <div class="meter-container">
+            <div>
+                <div class="meter"><span id="goldMeter"></span></div>
+                <div class="label">Gold: <span id="goldValue">50% - <span id="goldTrend">Strong Buy</span></span></div>
+            </div>
+            <div>
+                <div class="meter"><span id="silverMeter"></span></div>
+                <div class="label">Silver: <span id="silverValue">50% - <span id="silverTrend">Strong Buy</span></span></div>
+            </div>
+        </div>
+
+        <h2>Trading Tools</h2>
+        <button onclick="window.open('https://www.tradingview.com/', '_blank')">TradingView</button>
+        <button onclick="window.open('https://www.forexfactory.com/', '_blank')">Forex Calendar</button>
+        <button onclick="window.open('https://www.investing.com/currencies/', '_blank')">Currency Meter</button>
+        <button onclick="window.open('https://www.investing.com/commodities/gold', '_blank')">Gold & Silver Meter</button>
+        <button onclick="window.open('https://www.fastbull.com/list-position', '_blank')">Order Book</button>
+        <button onclick="showWindow(4)">Brokers</button>
+
+        <h2>Timeframe Selection</h2>
+        <button onclick="changeTimeframe()">Change Timeframe</button>
+        <p id="timeframeLabel">Current Timeframe: 1M</p>
+
+        <button onclick="updateMarket()">Refresh Data</button>
+        <button onclick="resetMarket()">Reset</button>
+
+        <button onclick="showWindow(2)">Go Back</button>
+    </div>
+
+    <!-- Fourth Window: Brokers -->
+    <div id="window4" class="container">
+        <h1>Top Brokers</h1>
+        <button onclick="window.open('https://one.justmarkets.link/a/9hf4b0qrcx', '_blank')">Just Markets</button>
+        <button onclick="window.open('https://one.exnesstrack.org/a/t7imjntrwg?source=app&platform=mobile&pid=mobile_share', '_blank')">Exness Broker</button>
+        <button onclick="window.open('https://www.xmglobal.com/referral?token=fV8poafdIdctBtrQdvbQBA', '_blank')">XM Broker</button>
+        <button onclick="window.open('https://www.hfm.com/ke/en/?refid=30420987', '_blank')">HFM Broker</button>
+
+        <button onclick="showWindow(3)">Go Back</button>
+    </div>
+
+    <script>
+        function showWindow(windowNumber) {
+            document.querySelectorAll('.container').forEach(window => window.classList.remove('show'));
+            document.getElementById('window' + windowNumber).classList.add('show');
+        }
+
+        function startJourney() {
+            const name = document.getElementById('nameInput').value;
+            if (name) {
+                alert('Welcome ' + name + ' to the journey!');
+                showWindow(2);
+            } else {
+                alert('Please enter your name.');
+            }
+        }
+
+        function updateMarket() {
+            document.getElementById('goldValue').textContent = '75% - Strong Buy';
+            document.getElementById('silverValue').textContent = '60% - Strong Buy';
+        }
+
+        function resetMarket() {
+            document.getElementById('goldValue').textContent = '50% - Neutral';
+            document.getElementById('silverValue').textContent = '50% - Neutral';
+        }
+
+        function changeTimeframe() {
+            const timeframes = ['1M', '5M', '15M', '1H', '4H'];
+            let current = document.getElementById('timeframeLabel').textContent.split(': ')[1];
+            let newIndex = (timeframes.indexOf(current) + 1) % timeframes.length;
+            document.getElementById('timeframeLabel').textContent = 'Current Timeframe: ' + timeframes[newIndex];
+        }
+    </script>
+
+</body>
+</html>
